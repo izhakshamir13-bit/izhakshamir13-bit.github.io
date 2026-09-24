@@ -251,10 +251,11 @@
           form.reset();
           show("You're on the list! We'll be in touch soon. 🎾", "success");
         } else {
-          throw new Error(result.message || "Request failed");
+          throw new Error(result.message || "");
         }
       } catch (err) {
-        show("Something went wrong. Please try again in a moment.", "error");
+        show(err.message ? "Sorry, we couldn't add you: " + err.message
+                         : "We couldn't reach the signup service. Check your connection and try again.", "error");
       } finally {
         button.disabled = false;
         button.textContent = "Join Waitlist";
